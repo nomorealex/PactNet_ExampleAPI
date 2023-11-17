@@ -108,7 +108,7 @@ namespace Provider.Controllers
                 return Ok(order);
             }
 
-            return NotFound("Joke with the id provided not found!");
+            return NotFound("Order with the id provided not found!");
            
         }
 
@@ -143,12 +143,12 @@ namespace Provider.Controllers
         public IActionResult PostOrder([FromBody] Orders order)
         {
 
-            if (order is Orders joke && order.Id == 0 && order.Name != null && order.Description != null)
+            if (order is Orders _order && order.Id == 0 && order.Name != null && order.Description != null)
             {
-                var lastid = GetLastJokesId();
-                joke.Id = (lastid != -1) ? ++lastid : 0;
-                ordersStorage.Add(joke);
-                return Created($"/jokes/{joke.Id}", joke);
+                var lastid = GetLastOrdersId();
+                _order.Id = (lastid != -1) ? ++lastid : 0;
+                ordersStorage.Add(_order);
+                return Created($"/Orders/{_order.Id}", _order);
             }
 
             return BadRequest("BadRequest!");
@@ -194,11 +194,11 @@ namespace Provider.Controllers
             {
                 return Accepted(order);
             }
-            return NotFound("Joke with the id provided not found!");
+            return NotFound("Order with the id provided not found!");
         }
 
 
-        int GetLastJokesId()
+        int GetLastOrdersId()
         {
             if (ordersStorage.Count > 0)
             {

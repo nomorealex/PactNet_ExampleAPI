@@ -13,7 +13,7 @@ namespace Consumer
     {
         static void Main(string[] args)
         {
-            var apiClient = new ApiClient(new Uri("http://localhost:5071/"));
+            var apiClient = new ApiClient(new Uri("http://localhost:9000/"));
             var option = State.RUNNING;
 
             while (option != State.FINALIZE)
@@ -42,13 +42,13 @@ namespace Consumer
                                 Console.WriteLine($"Response.Code={response1.StatusCode}, Response.Body={responseBody1}\n\n");
                                 break;
                             case 3:
-                                Console.WriteLine("**Post New Joke**");
-                                var response2 = apiClient.PostOrder("somejoke", "somebywho").GetAwaiter().GetResult();
+                                Console.WriteLine("**Post New Order**");
+                                var response2 = apiClient.PostOrder("third", "brief_description2").GetAwaiter().GetResult();
                                 var responseBody2 = response2.Content.ReadAsStringAsync().GetAwaiter().GetResult();
                                 Console.WriteLine($"Response.Code={response2.StatusCode}, Response.Body={responseBody2}\n\n");
                                 break;
                             case 4:
-                                Console.WriteLine("**Delete Joke**\nWhich id: ");
+                                Console.WriteLine("**Delete Order**\nWhich id: ");
                                 string id1 = Console.ReadLine();
                                 var response3 = apiClient.DeleteOrder(id1).GetAwaiter().GetResult();
                                 var responseBody3 = response3.Content.ReadAsStringAsync().GetAwaiter().GetResult();
