@@ -10,7 +10,7 @@ namespace Provider.Controllers
         /// <summary>
         /// List representing the repository (storage of the orders for testing)
         /// </summary>
-        List<Orders> ordersStorage = new List<Orders>
+        public static List<Orders> ordersStorage = new List<Orders>
         {
             new Orders (0,"first","brief_description1" ),
             new Orders (1,"second","brief_description2" ),
@@ -148,6 +148,9 @@ namespace Provider.Controllers
                 var lastid = GetLastOrdersId();
                 _order.Id = (lastid != -1) ? ++lastid : 0;
                 ordersStorage.Add(_order);
+
+                Console.WriteLine(ordersStorage.ToArray());
+
                 return Created($"/Orders/{_order.Id}", _order);
             }
 
