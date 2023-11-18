@@ -1,0 +1,266 @@
+{
+  "consumer": {
+    "name": "Consumer"
+  },
+  "interactions": [
+    {
+      "description": "A valid DELETE request to delete a specific joke.",
+      "providerStates": [
+        {
+          "name": "There is data"
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "path": "/Orders/1"
+      },
+      "response": {
+        "body": {
+          "Description": "brief_description2",
+          "Id": 1,
+          "Name": "second"
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "A valid GET request to retrieve a specific order.",
+      "providerStates": [
+        {
+          "name": "There is data"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/Orders/0"
+      },
+      "response": {
+        "body": {
+          "Description": "brief_description1",
+          "Id": 0,
+          "Name": "first"
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "A valid GET request to retrieve all orders.",
+      "providerStates": [
+        {
+          "name": "There is data"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/Orders"
+      },
+      "response": {
+        "body": [
+          {
+            "Description": "brief_description1",
+            "Id": 0,
+            "Name": "first"
+          },
+          {
+            "Description": "brief_description2",
+            "Id": 1,
+            "Name": "second"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "A valid POST request to create a new order.",
+      "providerStates": [
+        {
+          "name": "There is data"
+        }
+      ],
+      "request": {
+        "body": {
+          "Description": "brief_description3",
+          "Name": "third"
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "method": "POST",
+        "path": "/Orders"
+      },
+      "response": {
+        "body": {
+          "Description": "brief_description3",
+          "Name": "third"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "status": 201
+      }
+    },
+    {
+      "description": "A invalid DELETE request to delete a specific joke, id differs from integer.",
+      "providerStates": [
+        {
+          "name": "There is no data"
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "path": "/Orders/invalidID"
+      },
+      "response": {
+        "status": 400
+      }
+    },
+    {
+      "description": "A invalid DELETE request to delete a specific joke, id does not exist.",
+      "providerStates": [
+        {
+          "name": "There is no data"
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "path": "/Orders/5656"
+      },
+      "response": {
+        "status": 404
+      }
+    },
+    {
+      "description": "A invalid GET request to retrieve a specific order, id differs from integer.",
+      "providerStates": [
+        {
+          "name": "There is no data"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/Orders/invalidID"
+      },
+      "response": {
+        "status": 400
+      }
+    },
+    {
+      "description": "A invalid GET request to retrieve a specific order, id does not exist.",
+      "providerStates": [
+        {
+          "name": "There is no data"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/Orders/5656"
+      },
+      "response": {
+        "status": 404
+      }
+    },
+    {
+      "description": "A invalid POST request to create a new order.",
+      "providerStates": [
+        {
+          "name": "There is no data"
+        }
+      ],
+      "request": {
+        "body": {},
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/Orders"
+      },
+      "response": {
+        "status": 400
+      }
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "ffi": "0.4.0",
+      "models": "1.0.4"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "Provider"
+  }
+}
