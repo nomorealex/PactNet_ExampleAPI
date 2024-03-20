@@ -48,7 +48,7 @@ docker-compose up
 4. Then run the pact-broker with the docker-compose file
 5. Then publish the pact to pact-broker
  ```
-docker run -v C:\Users\nunodomingues\Desktop\contract_app\contract\pacts\Consumer-Provider.json:/app/pact.json pactfoundation/pact-cli publish /app/pact.json --consumer-app-version 1 --broker-base-url="http://host.docker.internal:9292"
+docker run -v C:\path\to\pacts\Consumer-Provider.json:/app/pact.json pactfoundation/pact-cli publish /app/pact.json --consumer-app-version 1 --broker-base-url="http://host.docker.internal:9292"
 ```
 6. Then run the verify the providertest with dotnet test with the server running
 7. Then use can-i-deploy to assure that a consumer and the provider are communicating correctly
